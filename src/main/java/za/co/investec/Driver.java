@@ -1,7 +1,12 @@
 package za.co.investec;
 
-public class Driver {
+import java.util.Arrays;
 
+import za.co.investec.service.CalculateService;
+import za.co.investec.service.impl.CalculateServiceImpl;
+
+public class Driver {
+	
 	public static void main(String[] args) {
 		
 		boolean isValid = true;
@@ -22,8 +27,11 @@ public class Driver {
 				}
 			}
 			if (isValid) {
-				// TODO calculate GDC
-				System.out.println("Calculate GDC");
+				Arrays.sort(numbers);
+				CalculateService calculateService = new CalculateServiceImpl();
+				int hcf = calculateService.highestCommonFactor(numbers);
+				
+				System.out.println(hcf);
 			}
 			else {
 				System.err.println("Please provide two or  more integers!");
