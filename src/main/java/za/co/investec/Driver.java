@@ -1,9 +1,11 @@
 package za.co.investec;
 
 import java.util.Arrays;
+import java.util.List;
 
 import za.co.investec.service.CalculateService;
 import za.co.investec.service.impl.CalculateServiceImpl;
+import za.co.investec.vo.Factor;
 
 public class Driver {
 	
@@ -30,8 +32,12 @@ public class Driver {
 				Arrays.sort(numbers);
 				CalculateService calculateService = new CalculateServiceImpl();
 				int hcf = calculateService.highestCommonFactor(numbers);
+				List<Factor> factors = calculateService.getFactors();
 				
-				System.out.println(hcf);
+				for (Factor factor: factors) {
+					System.out.println(factor.toString());
+				}
+				System.out.println(String.format("Highest Common Denominator: %s", hcf));
 			}
 			else {
 				System.err.println("Please provide two or  more integers!");

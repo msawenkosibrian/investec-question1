@@ -8,9 +8,10 @@ import za.co.investec.service.CalculateService;
 import za.co.investec.vo.Factor;
 
 public class CalculateServiceImpl implements CalculateService {
+	
+	private List<Factor> factors;
 
-	@Override
-	public Integer[] factors(int number) {
+	private Integer[] factors(int number) {
 
 		List<Integer> numbers = new ArrayList<Integer>();
 		for (int i = 1; i <= number; i++) {
@@ -24,7 +25,7 @@ public class CalculateServiceImpl implements CalculateService {
 	@Override
 	public int highestCommonFactor(int[] numbers) {
 		
-		List<Factor> factors = new ArrayList<Factor>();
+		factors = getFactors();
 		for (int i = 0; i < numbers.length; i++) {
 			Factor factor = new Factor();
 			factor.setNumber(numbers[i]);
@@ -47,5 +48,14 @@ public class CalculateServiceImpl implements CalculateService {
 			}
 		}
 		return hcf;
+	}
+
+	@Override
+	public List<Factor> getFactors() {
+
+		if (factors == null) {
+			factors = new ArrayList<Factor>();
+		}
+		return factors;
 	}
 }
